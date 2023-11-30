@@ -55,12 +55,12 @@ async function moduleProject4() {
       let weekDay = card.children[0];
       let apparent = card.children[1];
       let minMax = card.children[2];
-      let precipit = card.children[3]
+      let precipitation = card.children[3]
 
       weekDay.innerHTML = getWeekDay(day.date)
-      apparent.innerHTML = descriptions.find(d => d[0] === data.current.weather_description)[1];
+      apparent.innerHTML = descriptions.find(d => d[0] === day.weather_description)[1];
       minMax.innerHTML = `${day.temperature_min}°/${day.temperature_max}°`;
-      precipit.innerHTML = `Precipitation": ${day.precipitation_probability * 100}%`;
+      precipitation.innerHTML = `Precipitation: ${day.precipitation_probability * 100}%`;
     })
       document.querySelector('#location').firstElementChild.innerHTML = data.location.city
     } catch (err){
@@ -68,7 +68,13 @@ async function moduleProject4() {
     }
 
     function getWeekDay(date) {
-      return date
+      console.log(date)
+      
+      const myDate = new Date(date);
+      const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const dayOfWeekIndex = myDate.getDay();
+      const dayOfWeek = weekDays[dayOfWeekIndex + 1];
+      return dayOfWeek
     }
  
   })
