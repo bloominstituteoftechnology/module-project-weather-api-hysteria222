@@ -26,18 +26,18 @@ async function moduleProject4() {
     let city = evt.target.value;
     let url = `http://localhost:3003/api/weather?city=${city}`
     citySelector.disabled = true;
-    document.querySelector('.info').innerHTML = 'Fetching weather data...'
+    document.querySelector('.info').innerHTML = `Fetching weather data...`
 
     const res = await axios.get(url)
     console.log(res.data)
 
-    document.querySelector('.info').innerHTML = ' ';
+    document.querySelector('.info').innerHTML = '';
     citySelector.disabled = false;
     document.querySelector('#weatherWidget').style.display = 'block';
 
     let { data } = res;
     document.querySelector('#apparentTemp div:nth-child(2)')
-      .innerHTML = `${data.current.apparent_temperature}`;
+      .innerHTML = `${data.current.apparent_temperature}°`;
     document.querySelector('#todayDescription')
       .innerHTML = descriptions.find(d => d[0] === data.current.weather_description)[1];
     document.querySelector('#todayStats div:nth-child(1)')
